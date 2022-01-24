@@ -46,6 +46,8 @@ Extra: Vídeo detalhado de como instalar e usar o Aida64 [https://youtu.be/9v3U7
 
 Verificar qual template do OC Auxiliary Tool sera utilizado para gerar a EFI, de acordo com a lista abaixo. Considerar as informações levantadas no Item 1 e 2. Caso, tenha eGPU considerar a versão do sistema que sua eGPU suporta para selecionar o template.
 
+* Alternativo, download aquivo em Excel 👉 👉 👉 [https://bit.ly/ocatexcel](https://bit.ly/ocatexcel)
+
 | Geração   | Config                                                   | Vídeo Integrado | Vídeo Externo | Versão Mínimo    | Versão Máximo | Extra                                                                                                                                                                                                        |
 | --------- | -------------------------------------------------------- | --------------- | ------------- | ---------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | 01 Gen    | Desktop\_01stGen\_Clarkdale\_iMac11,2.plist              | Não Suportado   | Sim           | Lion             | High Sierra   |                                                                                                                                                                                                              |
