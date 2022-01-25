@@ -27,6 +27,7 @@ Extra: [Vídeo](https://youtu.be/9v3U72dPZTo) detalhado de como instalar e usar 
 - Desktop 2th Sandy Bridge [Download](https://github.com/mateusangelo/GERAR-EFI-HACKINTOSH-DESKTOP-INTEL/raw/main/EFI_2th_Sandy_Bridge.zip)
 - Desktop 3th Ivy Bridge [Download](https://github.com/mateusangelo/GERAR-EFI-HACKINTOSH-DESKTOP-INTEL/raw/main/EFI_Ivy-Bridge_3th.zip)
 - Desktop 4th Haswell [Download](https://github.com/mateusangelo/GERAR-EFI-HACKINTOSH-DESKTOP-INTEL/raw/main/EFI_Haswell_4th.zip)
+- Desktop 5th Haswell-E x99 [Download](https://github.com/hibrunofilho/X99-EFI-OpenCore/releases/tag/hackintosh)
 - Desktop 6th SkyLake [Download](https://github.com/mateusangelo/GERAR-EFI-HACKINTOSH-DESKTOP-INTEL/raw/main/EFI_SkyLake_6th.zip)
 - Desktop 7th KabyLake [Download](https://github.com/mateusangelo/GERAR-EFI-HACKINTOSH-DESKTOP-INTEL/raw/main/EFI_KabyLake_7th.zip)
 - Desktop 8th CoffeeLake [Download](https://github.com/mateusangelo/GERAR-EFI-HACKINTOSH-DESKTOP-INTEL/raw/main/EFI_Coffee_Lake_8th.zip)
