@@ -19,6 +19,18 @@ Importante:
  *  YouTube 👉 👉 👉  [https://bit.ly/DicasDoMateus]()
   *  Discord 👉 👉 👉  [https://discord.gg/fS98CuZFFY]()
 
+Referencias:
+
+* Opencore Install Guide 👉 [https://dortania.github.io/OpenCore-Install-Guide/](https://dortania.github.io/OpenCore-Install-Guide/)
+* Olarila - The Real Vanilla Hackintosh 👉 [https://www.olarila.com/](https://www.olarila.com/)
+* OC Auxiliary Tools (OCAT) 👉 [https://github.com/ic005k/QtOpenCoreConfig](https://github.com/ic005k/QtOpenCoreConfig)
+* OC-Little-Translated 👉 [https://github.com/5T33Z0/OC-Little-Translated](https://github.com/5T33Z0/OC-Little-Translated)
+* WhateverGreen 👉 [https://github.com/acidanthera/WhateverGreen](https://github.com/acidanthera/WhateverGreen)
+
+Agradencimentos:
+
+* Dortania, Maldon, @ic005k (OCAT Team), @5T33Z0 (OCAT Templates)  
+
 
 ## 1) Definir Hardware:
 Gerar report de Hardware do Aida64 e Definir:
@@ -42,11 +54,13 @@ Extra: Vídeo detalhado de como instalar e usar o Aida64 [https://youtu.be/9v3U7
 | High Sierra   | GTX Titan X, 1080 (Ti), 1070 (Ti), 1060 (GP104 Não Suportada), 1050 (Ti), 1030, 1010<br>GTX 980 (Ti), 970, 960, 950, 750 (Ti), 745                                                                                                                                                                                                                                                             | shikigva=40 boot arg: Altere Smios para IMac14,2 para melhor suporte ao Nvidia Web Drivers<br>nvda\_drv\_vrl=1 para ativar os Drivers da Placa de Video Nvida |
 | Não Suportada | Nvidia Serie 3000, 2000, 1600<br>GTX 660, 650 Ti, 650, 645 Todas GK106 Variants<br>GT 730, 720A, 710, 705, 640, 630, 620, 610 Todas GF108, GF117 ou GF119                                                                                                                                                                                                                                      |                                                                                                                                                               |
 
+Extra: Placas de Videos Compativeis com MacOS Monterey [https://youtu.be/Z_1Il-jQuq8](https://youtu.be/Z_1Il-jQuq8)
+
 ## 3) Definir Template OC Auxiliary Tools
 
 Verificar qual template do OC Auxiliary Tool sera utilizado para gerar a EFI, de acordo com a lista abaixo. Considerar as informações levantadas no Item 1 e 2. Caso, tenha eGPU considerar a versão do sistema que sua eGPU suporta para selecionar o template.
 
-* Alternativo, download aquivo em Excel 👉 👉 👉 [https://bit.ly/ocatexcel](https://bit.ly/ocatexcel)
+* Alternativo, download planilha abaixo em formato Excel 👉 👉 👉 [https://bit.ly/ocatexcel](https://bit.ly/ocatexcel)
 
 | Geração   | Config                                                   | Vídeo Integrado | Vídeo Externo | Versão Mínimo    | Versão Máximo | Extra                                                                                                                                                                                                        |
 | --------- | -------------------------------------------------------- | --------------- | ------------- | ---------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -95,7 +109,7 @@ Clicar em DP, e Ajuste o Device Properties conforme regras abaixo:
 
 * Para processadores F ou SMBIOS MacPro6,1, MacPro7,1 ou iMacPro1,1: Limpar todos os itens no Device Properties. 
 * Para processadores com video integrado e com ou sem placa de video externa manter o Device Properties de acordo com a regra definida na coluna extra do item 3. Limpar os itens não necessario
-*
+
 			
 ### 4.3) Kernel
 Adcionar kexts adcionais de USB e Placa de Rede
@@ -114,6 +128,16 @@ Adcionar kexts adcionais de USB e Placa de Rede
 | LucyRTL8125Ethernet.kext  | For Realtek's 2.5Gb Ethernet.                                                                                                                                          |
 | SmallTreeIntel82576.kext  | Required for I211 NICs, based off of the SmallTree kext but patched to support I211.<br>Required for most AMD boards running Intel NICs.                               |
 
+* Outras Kext Opcionais
+	* Só adicione se necessário[]()
+	
+| Kext                     | Description                                                                                                                                                                     |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| NVMeFix                  | Used for fixing power management and initialization on non-Apple NVMe.                                                                                                          |
+| SATA-Unsupported         | Adds support for a large variety of SATA controllers, mainly relevant for laptops which have issues seeing the SATA drive in macOS.<br>We recommend testing without this first. |
+| AppleMCEReporterDisabler | Useful starting with Catalina to disable the AppleMCEReporter kext which will cause kernel panics on AMD CPUs.<br>Recommended for dual-socket systems (ie. Intel Xeon).         |
+| RestrictEvents           | Better experience with unsupported processors like AMD, Disable MacPro7,1 memory warnings and provide upgrade to macOS Monterey via Software Updates when available.            |
+
 ### 4.3) Boot Args
 Em Nvram -> Add -> 7C436110-AB2A-4BBB-A880-FE41995C9F82 -> boot-args, adcionar parametros opcionais conforme lista abaixo:
 
@@ -124,6 +148,7 @@ Em Nvram -> Add -> 7C436110-AB2A-4BBB-A880-FE41995C9F82 -> boot-args, adcionar p
 | agdpmod=pikera | Disables Board-ID checks on AMD Navi GPUs (RX 5000 & 6000 series). Without this you'll get a black screen. Don't use on Navi Cards (i.e. Polaris and Vega).                                                                                        |
 | \-igfxvesa     | Disables graphics acceleration in favor of software rendering. Useful if iGPU and dGPU are incompatible or if you are using an NVIDIA GeForce Card and the WebDrivers are outdated after updating macOS, so the display won't turn on during boot. |
 | \-wegnoegpu    | Disables all GPUs but the integrated graphics on Intel CPU. Use if GPU is incompatible with macOS. Doesn't work all the time.                                                                                                                      |
+| \-wegnoigpu    | to disable internal GPU                                                                                                                                                                                                                            |
 | nvda\_drv=1    | Enable Web Drivers for NVIDIA Graphics Cards (supported up to macOS High Sierra only).                                                                                                                                                             |
 | nv\_disable=1  | Disables NVIDIA GPUs (don't combine this with nvda\_drv=1)                                                                                                                                                                                         |
 
@@ -155,16 +180,18 @@ Salvar todos os ajustes feitos na EFI para adicionar no Pendrive de Boot
 ## 5) Criar Pendrive de Boot:
 Apos definir a versão a ser instalada, no link abaixo e fazer download da Imagem do MacOS a ser instalado:
 
-* Download ISO From Olarila 👉 👉 https://www.olarila.com/topic/6278-olarila-vanilla-images/
+* Download ISO From Olarila 👉 👉 [https://www.olarila.com/topic/6278-olarila-vanilla-images/](https://dortania.github.io/OpenCore-Install-Guide/installer-guide/winblows-install.html#making-the-installer-in-windows)
 
 Links alternativos para Baixar o Big Sur 11.2
 
-* ISO Big Sur 11.2 👉 👉 https://bit.ly/ISOBigSur 
-* ISO Big Sur 11.2 👉 👉 https://bit.ly/ISOBIGSUR2 
-* ISO Big Sur 11.2 👉 👉 https://bit.ly/ISOBigSUR3
+* ISO Big Sur 11.2 👉 👉 [https://bit.ly/ISOBigSur]() 
+* ISO Big Sur 11.2 👉 👉 [https://bit.ly/ISOBIGSUR2]() 
+* ISO Big Sur 11.2 👉 👉 [https://bit.ly/ISOBigSUR3]()
 
 Apos baixar a imagem, usar o Rufus para gravar ela pendrive de boot.
 
+Alternativo: Método oficial do Opencore para Criar Pendrive de Boot Direto da Apple no Windows [Aqui
+](https://dortania.github.io/OpenCore-Install-Guide/installer-guide/winblows-install.html#making-the-installer-in-windows)
 ## 6) Copiando EFI para Pendrive:
 Abrir o OCAT, clicar em MountESP, selecionar o pendrive na lista de disco disponiveis e clicar em Mount.
 
@@ -196,16 +223,21 @@ Apos abrir a partição EFI, delete todo o conteudo da partição e copie a past
 		* 64MB para Ivy Bridge com Big Sur, Haswell ou Superior.  
 	* SATA Mode: AHCI
 
+Extra: Exemplo Ajuste de Bios 👉 [Bios 01](https://youtu.be/FOrov-ur4qA) [Bios 02](https://youtu.be/EUolzdvEpDA)
+
 ## 8) Instalar Mac OS:
 Fazer boot pelo pendrive, no menu do Opencore, selecionar Install Mac Os [Nome da versão que escolher], e ir até o final.
 
 * Caso tenha problema com video integrado, colocar o atributo -igfxvesa e tentar novamente
 * Caso apareça mensagem de proibido, apos selecionar imagem para instalar, trocar pendrive de porta, escolhendo uma 2.0/3.0 na traseira da maquina.
 
+Extra: Como instalar MacOS [Big Sur](https://youtu.be/i7F7WtXXbhs) e [Monterey](https://youtu.be/b6g-W4gyQm0)
+
 ## 9) Post Install:
 * Copiar a pasta EFI oara a partição EFI do disco que foi instalar o sistema, para dar boot sem pendrive.
 
 Mapeament de USBs:
 
-* Como Mapear Portas USBs até big sur 11.2 👉 👉 https://youtu.be/X6djBycrcx4 
-* Como Mapear Portas USBs acima big sur 11.3 👉 👉 https://youtu.be/4z76yO5_2aU
+* Como Mapear Portas USBs até big sur 11.2 👉 👉 [https://youtu.be/X6djBycrcx4 ](https://youtu.be/b6g-W4gyQm0)
+* Como Mapear Portas USBs acima big sur 11.3 👉 👉 [https://youtu.be/4z76yO5_2aU](https://youtu.be/b6g-W4gyQm0)
+* Ajustando Audio HDMI e Mapeando Conectores 👉 👉 [https://youtu.be/NIoPq2w8q18](https://youtu.be/NIoPq2w8q18)
